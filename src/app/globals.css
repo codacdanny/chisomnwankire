@@ -1,26 +1,224 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+
+  /* Brand tokens — see brand.md */
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-bright: var(--brand-bright);
+  --color-brand-tint: var(--brand-tint);
+  --color-gold: var(--gold);
+  --color-soft: var(--soft);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.75);
+
+  --animate-marquee: marquee 42s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+ * White + magenta, one committed light theme.
+ *
+ * Three magentas, and they are not interchangeable:
+ *   --brand        #D9127F  filled surfaces. White text on it is 4.84:1 (AA).
+ *   --brand-ink    #B00C66  magenta TEXT on white — 6.85:1. Small type uses this.
+ *   --brand-bright #FF2D9B  gradients and decoration ONLY. 3.44:1 on white, so it
+ *                           never carries text.
+ *
+ * Gold is 1.3:1 on white and can never be text here. It appears only as a
+ * highlighter swash behind ink text, or as an accent on magenta panels (3.7:1,
+ * which clears the 3:1 bar for large text and icons).
+ */
+:root {
+  color-scheme: light;
+
+  --background: #ffffff;
+  --foreground: #1a1016;
+
+  --card: #ffffff;
+  --card-foreground: #1a1016;
+  --popover: #ffffff;
+  --popover-foreground: #1a1016;
+
+  /* Pink-tinted band used to separate alternating sections. */
+  --soft: #fdf2f7;
+
+  --primary: #d9127f;
+  --primary-foreground: #ffffff;
+
+  --secondary: #fdf2f7;
+  --secondary-foreground: #1a1016;
+
+  --muted: #fdf2f7;
+  --muted-foreground: #6b5a64;
+
+  --accent: #fce7f0;
+  --accent-foreground: #1a1016;
+
+  --destructive: #c0243b;
+
+  --border: #f1e1ea;
+  --input: #e6d2de;
+  --ring: #d9127f;
+
+  --brand: #d9127f;
+  --brand-ink: #b00c66;
+  --brand-bright: #ff2d9b;
+  --brand-tint: #fce7f0;
+  --gold: #ffe14d;
+
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Soft pink bloom at the top of the page, over a faint magenta grid. */
+    background-image:
+      radial-gradient(
+        ellipse 75% 50% at 50% -8%,
+        color-mix(in oklab, var(--brand-bright) 12%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--brand) 5%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--brand) 5%, transparent) 1px,
+        transparent 1px
+      );
+    background-size:
+      100% 820px,
+      72px 72px,
+      72px 72px;
+    background-repeat: no-repeat, repeat, repeat;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    @apply outline-ring outline-2 outline-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    /*
+     * Hard guarantee for entrance animations. Motion writes opacity/transform as
+     * inline styles, so a JS hook is the only thing that would otherwise undo
+     * them — and if that hook is late, wrong, or JS fails outright, the content
+     * stays invisible. This rule forces the final state from CSS instead.
+     */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@utility display-tight {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+/* Hairline that fades out at both ends — used as a divider. */
+@utility rule-fade {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border) 20%,
+    var(--border) 80%,
+    transparent
+  );
+}
+
+/*
+ * The magenta panels that punctuate the white page.
+ *
+ * The ramp deliberately starts at #E0148A, NOT at --brand-bright. White text on
+ * #FF2D9B is only 3.44:1, so a gradient reaching that far would fail AA for body
+ * copy at the light end. #E0148A is the brightest magenta that still clears 4.5:1
+ * against white (4.54:1). Text on these panels is full white — not white/90,
+ * which drops to 4.11:1 at the light end.
+ */
+@utility panel-brand {
+  background-image: linear-gradient(150deg, #e0148a 0%, var(--brand) 45%, #a80b60 100%);
+  color: #ffffff;
+}
+
+/*
+ * Highlighter swash — gold sits behind ink text rather than replacing it,
+ * because gold text on white is 1.3:1. Ink on gold is 12.9:1.
+ */
+@utility marker-gold {
+  background-image: linear-gradient(to bottom, transparent 58%, var(--gold) 58%);
+  padding-inline: 0.1em;
 }
