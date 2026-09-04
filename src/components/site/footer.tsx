@@ -25,11 +25,6 @@ export function SiteFooter() {
             <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
               {person.role}. {person.location}.
             </p>
-            {/* Her own sign-off — recognised by 15k followers, so it belongs here. */}
-            <p className="text-brand-ink mt-4 text-sm font-semibold">
-              {person.signature}
-              <span aria-hidden="true"> 👸</span>
-            </p>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-1 md:items-start">

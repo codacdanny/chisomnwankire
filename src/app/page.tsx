@@ -1,11 +1,13 @@
+import { ParallaxBackdrop, ScrollProgress } from "@/components/site/motion-primitives";
 import { SiteNav } from "@/components/site/nav";
 import { Hero } from "@/components/site/hero";
 import { Clients } from "@/components/site/clients";
+import { Platforms } from "@/components/site/platforms";
 import { Results } from "@/components/site/results";
 import { Services } from "@/components/site/services";
 import { Process } from "@/components/site/process";
 import { About } from "@/components/site/about";
-import { Speaking } from "@/components/site/speaking";
+import { Testimonials } from "@/components/site/testimonials";
 import { Offers } from "@/components/site/offers";
 import { Faq } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
@@ -21,15 +23,18 @@ export default function Home() {
         Skip to content
       </a>
 
+      <ParallaxBackdrop />
+      <ScrollProgress />
       <SiteNav />
 
       <main id="main" className="flex-1">
         <Hero />
         <Clients />
         <Results />
+        <Platforms />
         <Services />
+        <Testimonials />
         <Process />
-        <Speaking />
         <Offers />
         <About />
         <Faq />

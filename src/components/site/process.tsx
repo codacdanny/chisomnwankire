@@ -1,5 +1,6 @@
 import { Section, SectionHeading } from "@/components/site/section";
 import { Reveal } from "@/components/site/reveal";
+import { ScrollLine } from "@/components/site/motion-primitives";
 import { process } from "@/lib/site-config";
 
 export function Process() {
@@ -13,7 +14,9 @@ export function Process() {
         />
       </Reveal>
 
-      <ol className="border-border bg-border mt-12 grid gap-px overflow-hidden rounded-2xl border md:grid-cols-2 lg:grid-cols-4">
+      <ScrollLine className="mt-12" />
+
+      <ol className="border-border bg-border mt-px grid gap-px overflow-hidden rounded-2xl border md:grid-cols-2 lg:grid-cols-4">
         {process.map((phase, index) => (
           <Reveal as="li" key={phase.step} delay={index * 0.06}>
             <div className="bg-card hover:bg-brand-tint h-full p-6 transition-colors duration-150 ease-out md:p-7">

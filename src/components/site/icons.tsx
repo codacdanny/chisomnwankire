@@ -33,3 +33,39 @@ export function XIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+/** Instagram. Brand mark, drawn as strokes to sit beside Lucide's 24-unit grid. */
+export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+/** TikTok. Solid mark. */
+export function TikTokIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <path d="M16.6 1.5h-3.3v14.2a2.6 2.6 0 1 1-2-2.53V9.8a5.9 5.9 0 1 0 5.3 5.87V8.5a7 7 0 0 0 4.1 1.33V6.5a3.9 3.9 0 0 1-4.1-3.83V1.5Z" />
+    </svg>
+  );
+}

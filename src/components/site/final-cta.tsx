@@ -2,13 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/section";
 import { Reveal } from "@/components/site/reveal";
+import { Parallax } from "@/components/site/motion-primitives";
 import { finalCta, links } from "@/lib/site-config";
 
 export function FinalCta() {
   return (
     <Section>
       <Reveal>
-        <div className="panel-brand relative overflow-hidden rounded-3xl px-6 py-14 text-center shadow-xl shadow-[#d9127f]/25 md:px-12 md:py-20">
+        <Parallax distance={34} innerClassName="panel-brand relative overflow-hidden rounded-3xl px-6 py-14 text-center shadow-xl shadow-[#d9127f]/25 md:px-12 md:py-20">
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_0%,rgba(255,255,255,0.16),transparent_65%)]"
@@ -41,7 +42,7 @@ export function FinalCta() {
               </Button>
             </div>
           </div>
-        </div>
+        </Parallax>
       </Reveal>
     </Section>
   );

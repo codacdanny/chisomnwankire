@@ -1,6 +1,6 @@
 # Chisom Nwankire — Landing Page
 
-Personal landing page for Chisom Nwankire, LinkedIn Brand Strategist & Social Media Manager.
+Personal landing page for Chisom Nwankire, Social Media Marketer & Manager.
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui (radix-nova) · Motion
 
@@ -15,36 +15,56 @@ npm run lint
 
 ## Before this goes live
 
-### 1. Confirm these five things with Chisom
+### 1. Confirm these with Chisom
 
 | Item | Status |
 |---|---|
-| **Calendly link** | ⚠ No public Calendly could be found. `links.calendly` is a placeholder and every primary CTA points at it. **This is the highest-priority blocker.** |
-| **Coachli link** | ⚠ `coachli.co/chisomnwankire` returned HTTP 500 on check — a server error, not a 404, so it is neither confirmed nor disproven. Have her click it. |
-| **Email** | ⚠ `hello@chisomnwankire.com` is a placeholder. |
+| **Coachli link** | ⚠ `coachli.co/chisomnwankire` returned HTTP 500 on check — a server error, not a 404, so it is neither confirmed nor disproven. Have her click it. It backs the "1:1 Power Session" CTA. |
 | **Sova job title** | ⚠ Listed as "Founder & Team Lead". Her LinkedIn says "Team Lead", but her own launch post says *"I'm officially launching my brand today"* — see below. |
+| **Testimonials** | ⚠ None exist publicly. The Reviews section and its nav entry are built and gated on `testimonials` in site-config; add three and both appear. |
 | **Pricing** | ⚠ The cost FAQ is written in her voice but contains no real numbers. |
 
-**Verified and already correct:** LinkedIn `linkedin.com/in/chisom-nwankire`, X `x.com/chisom_nwankire`.
+**Supplied and wired:** Calendly, email, LinkedIn `linkedin.com/in/chisom-nwankire`,
+X `x.com/chisom_nwankire`.
 
-### 2. Photo — `src/components/site/portrait.tsx`
+### 2. Photo and favicon — done
 
-The hero shows a branded "CN" monogram rather than a broken image. To use the real photo:
+`public/Chisom-Portrait.jpeg` is live in the hero via `next/image` (priority-loaded, sized,
+`alt` set). It is a studio shot on a grey backdrop rather than a cut-out, so the brand colour
+comes from a tilted magenta plate behind it rather than showing through.
 
-1. Save the cut-out portrait to `public/chisom.png` (transparent PNG sits best on the
-   magenta gradient bed).
-2. Change one line:
-   ```ts
-   const PORTRAIT_SRC: string | null = null;   // → "/chisom.png"
-   ```
+The favicon is `src/app/icon.png` — a 256px square crop of her face, generated from the same
+photo. Next.js picks it up automatically from that path; the stock `favicon.ico` was deleted
+so it cannot win over it.
 
-`next/image`, sizing, `alt` text, and priority loading are already wired.
+### 3. Why there are no follower counts
 
-### 3. Update the live numbers before launch
+Her own total moved 15.2K → 16.5K inside a month, and **there is no public LinkedIn API that
+would let the page read it automatically** — follower counts are only exposed through an
+authenticated Marketing API for company pages you administer, never for personal profiles. A
+figure that has to be hand-edited to stay true will quietly go stale, so the Results section
+states growth as a fixed achievement ("3 → 600+") instead of a live number. If she ever wants
+a live count, it would need a small server route holding her LinkedIn OAuth token, and it
+still would not cover her personal profile.
 
-`results[0]` and `results[1]` cite follower counts that were live in August 2026 (15.2K on her
-own account, 693 for Acheva). They will drift. The section footnote dates them honestly, but
-refresh them at launch — their whole value is that a visitor can check them in one click.
+## Positioning
+
+She is a **social media marketer and manager** — the strategy and the day-to-day running of it
+together — working across **LinkedIn, X, Instagram and TikTok**. LinkedIn is the flagship
+offer, not the whole identity. That distinction drives the page title, meta description,
+footer bio, the Platforms section, the service list, and the "Do you only work on LinkedIn?"
+FAQ. Keep it when editing copy — `site-config.ts` carries the same note at the top.
+
+Platforms live in one place, `platforms` in `site-config.ts`; the section and its icons are
+generated from that array.
+
+The hero headline (**"Making brands impossible to ignore"**, set in all-caps) and the
+subheading (**"A clear Social Media System…"**) are Chisom's own words, verbatim.
+
+Structural cues taken from [digitalhavenglobal.com](https://www.digitalhavenglobal.com/),
+which she gave as a reference: broad practitioner positioning rather than a single platform,
+a bold direct-address promise in the hero, and **Reviews as a top-level nav item appearing
+early** — implemented here, but gated until real testimonials exist.
 
 ## What the research changed
 
@@ -64,13 +84,14 @@ verifiable, which is why the Results section now leads with them and the 2.01M i
 figure sits last. Her engagement is also unusual: 400–900 reactions and 350–900 comments per
 post, a near 1:1 ratio that most accounts her size do not see.
 
-**"The LinkedIn Princess 👸" is her sign-off** across her posts, and it was going unused. It
-now closes the footer.
-
-Her flagship argument — *"High engagement ≠ inbound leads"* — became the hero subheading, and
-her content framework (*Attracts → Builds trust → Invites action*) now shapes the Process
-section. Copy deliberately avoids the agency register she publicly attacks: she calls out
+Her content framework (*Attracts → Builds trust → Invites action*) shapes the Process section,
+and her argument that *"high engagement is not the same as inbound leads"* is now an FAQ
+answer. Copy deliberately avoids the agency register she publicly attacks: she calls out
 *"generic advice like 'keep showing up'"* by name.
+
+Her "The LinkedIn Princess 👸" sign-off was added to the footer and then removed at her
+request, along with the Speaking / LinkedIn Live section and the word "Remote" from the
+footer bio.
 
 ### Claims that could not be independently verified
 
@@ -89,7 +110,8 @@ Client wordmarks in the logo strip render as **type, not logo files** — a row 
 PNGs at different optical weights is the fastest way to cheapen a page.
 
 **No testimonials were found anywhere public.** Her whole sales argument is proof-driven, so
-the site is weaker without them. Worth asking her for three.
+the site is weaker without them — and the reference site she chose puts Reviews in the nav.
+The section is built and waiting; it needs three real quotes.
 
 ## Structure
 
@@ -102,6 +124,9 @@ src/
   components/
     site/               all page sections
       section.tsx       Container / Section (white | soft) / SectionHeading primitives
+      testimonials.tsx  Reviews — renders only when site-config has real quotes
+      platforms.tsx     LinkedIn / X / Instagram / TikTok
+      motion-primitives.tsx  ScrollProgress, Parallax, CountUp, ScrollLine
       reveal.tsx        one-shot scroll entrance wrapper
       portrait.tsx      hero photo slot
       icons.tsx         LinkedIn + X glyphs (Lucide ships no brand marks)
@@ -121,6 +146,10 @@ brand.md                palette, type, voice, motion rules
   and as figures/icons on magenta panels. See `brand.md` for the full rule.
 - **Panel gradients stop at `#E0148A`**, not at the bright magenta, so white body copy clears
   AA everywhere on the panel.
+- **Reduced motion is enforced in CSS, not JS.** Motion's `useReducedMotion()` has twice
+  failed to flip in this project even when the media query matches, so every guarantee is a
+  CSS rule (`[data-reveal]`, `[data-parallax]`, `motion-reduce:hidden`). New motion must carry
+  one of those hooks. See `brand.md`.
 - **Button sizes.** shadcn's radix-nova `lg` is 36px — below the 40px touch minimum and too
   small for a landing CTA — so `nav` (40px) and `xl` (48px) were added to `ui/button.tsx`.
 
@@ -136,4 +165,8 @@ Checked in a real browser at 375 / 768 / 1280 px:
 - One `h1`, ordered headings, all controls and icons carry accessible names
 - Touch targets ≥ 40px, except an inline prose link (exempt under WCAG 2.5.8)
 - Under `prefers-reduced-motion: reduce`, all content renders at its final state with no
-  scrolling required, and the logo marquee is fully stopped
+  scrolling required, the logo marquee is stopped, every parallax transform is neutralised,
+  and the progress bar is hidden
+- Motion behaves: parallax elements move at different rates on scroll, the progress bar
+  tracks scroll position, and the count-up lands on the exact target values
+  (`15.2K`, `3 → 693`, `300+`, `2.01M`) rather than drifting

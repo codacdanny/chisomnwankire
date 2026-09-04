@@ -23,7 +23,7 @@ const display = Outfit({
 });
 
 const description =
-  "Chisom Nwankire builds LinkedIn presences that drive authority, trust, and revenue for brands, CEOs, and entrepreneurs. Brand management, ghostwriting, and lead generation.";
+  "Chisom Nwankire is a brand strategist and social media manager. She turns founders, CEOs and brands into the obvious choice — strategy, ghostwriting, social media management, and lead generation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chisomnwankire.com"), // ⚠ update to the real domain
@@ -33,11 +33,12 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
-    "LinkedIn brand strategist",
+    "brand strategist",
+    "social media manager",
     "LinkedIn ghostwriter",
     "personal branding",
-    "social media manager",
-    "LinkedIn lead generation",
+    "content strategy",
+    "lead generation",
   ],
   authors: [{ name: person.name }],
   openGraph: {

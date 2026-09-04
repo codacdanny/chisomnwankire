@@ -10,15 +10,15 @@ export function About() {
         <Reveal>
           <Eyebrow>About</Eyebrow>
           <h2 className="display-tight mt-4 text-3xl font-semibold text-balance md:text-[2.75rem]">
-            Helping you become the{" "}
-            <span className="marker-gold">obvious choice</span> on LinkedIn
+            I help you become the{" "}
+            <span className="marker-gold">obvious choice</span>
           </h2>
 
           <div className="text-muted-foreground mt-6 max-w-prose space-y-4 text-base leading-relaxed">
             <p>
-              Two years ago I was the girl who did not know what LinkedIn was for. Today my
-              own account sits at 15,000+ followers, and I run LinkedIn for founders,
-              startups, and training platforms across Nigeria, the UK, and Rwanda.
+              Two years ago I was the girl who did not know what LinkedIn was for. Today I
+              build and run brands for founders, startups, and training platforms across
+              Nigeria, the UK, and Rwanda — strategy, content, and community.
             </p>
             <p>
               The pattern is always the same. The founder is brilliant. The product is good.
@@ -29,6 +29,7 @@ export function About() {
               So I build it: strategy first, content that sounds like you and not like an
               agency, and enough consistency that the market stops needing to be convinced.
               Not &ldquo;keep showing up&rdquo; — an actual system, with proof attached.
+              LinkedIn is where I do my sharpest work, but the system travels.
             </p>
           </div>
 

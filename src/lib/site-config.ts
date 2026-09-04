@@ -7,17 +7,21 @@
  * Items still needing her direct confirmation are marked ⚠ inline and listed in
  * the README. Do not invent numbers here — every figure below is either publicly
  * checkable or came from her own published creatives.
+ *
+ * POSITIONING
+ * She is a social media MARKETER and MANAGER — the strategy and the day-to-day
+ * running of it, together. Not a LinkedIn-only specialist: she works across
+ * LinkedIn, X, Instagram and TikTok. LinkedIn is the flagship, not the identity.
+ * Keep that distinction when editing copy.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 export const person = {
   name: "Chisom Nwankire",
   initials: "CN",
-  role: "LinkedIn Brand Strategist & Social Media Manager",
-  /** Her own sign-off, used across her posts. Her most recognisable asset. */
-  signature: "The LinkedIn Princess",
-  tagline: "Helping you become the obvious choice on LinkedIn",
-  location: "Remote — working with founders across Nigeria, the UK, and Rwanda",
+  role: "Social Media Marketer & Manager",
+  tagline: "I help you become the obvious choice",
+  location: "Working with founders across Nigeria, the UK, and Rwanda",
 } as const;
 
 export const links = {
@@ -26,29 +30,59 @@ export const links = {
   x: "https://x.com/chisom_nwankire",
   // ⚠ coachli.co returned a server error on check — confirm this resolves
   coachli: "https://coachli.co/chisomnwankire/SV-SetId",
-  // ⚠ no public Calendly found — replace with her real booking link
-  calendly: "https://calendly.com/chisomnwankire",
-  // ⚠ confirm the address she wants inbound going to
-  email: "mailto:hello@chisomnwankire.com",
+  // ✔ supplied by Chisom
+  calendly: "https://calendly.com/nwankireprecious2/new-meeting-1",
+  email: "mailto:nwankireprecious2@gmail.com",
 } as const;
+
+/**
+ * ⚠ EMPTY BY DESIGN — no testimonials exist anywhere public.
+ *
+ * The Reviews section and its nav entry only appear once this array has entries,
+ * so the site never ships an empty or fabricated testimonial block. Add three
+ * and both switch on automatically. Shape:
+ *   { quote: "…", name: "…", title: "…", company: "…" }
+ */
+export const testimonials: {
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
+}[] = [];
 
 export const nav = [
   { label: "Services", href: "#services" },
+  ...(testimonials.length > 0 ? [{ label: "Reviews", href: "#reviews" }] : []),
   { label: "Results", href: "#results" },
+  { label: "Platforms", href: "#platforms" },
   { label: "Process", href: "#process" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
-] as const;
+];
 
+/**
+ * ⚠ HEADLINE AND SUBHEAD ARE CHISOM'S OWN WORDS, verbatim — including the caps
+ * on the headline, which is set in all-caps by design.
+ *
+ * Both lines are platform-agnostic, matching the positioning above.
+ */
 export const hero = {
   badge: "Taking on 2 new clients this quarter",
-  headlineLead: "I help brands, CEOs and entrepreneurs build a LinkedIn presence that drives",
-  headlineHighlight: "authority, trust, and revenue.",
-  sub: "High engagement is not the same as inbound leads. You can post for 150 days straight, collect the likes, and still watch the people who can actually pay you scroll past. That is a positioning problem — and it is fixable.",
+  headlineLead: "Making brands",
+  headlineHighlight: "impossible to ignore",
+  sub: "A clear Social Media System designed to help you get noticed, build trust, and Attract clients.",
   primaryCta: "Book a 1:1 call",
   secondaryCta: "See the results",
-  disciplines: ["Brand Management", "Ghostwriting", "Lead Generation"],
+  disciplines: ["Social Media Marketing", "Brand Management", "Ghostwriting", "Lead Generation"],
 } as const;
+
+/** The platforms she manages. Order is deliberate: LinkedIn is the flagship. */
+export const platforms = [
+  { name: "LinkedIn", note: "Flagship" },
+  { name: "X", note: "Thought leadership" },
+  { name: "Instagram", note: "Brand presence" },
+  { name: "TikTok", note: "Reach & discovery" },
+] as const;
 
 /**
  * Names taken from her own LinkedIn banner and experience list.
@@ -67,19 +101,26 @@ export const clients = [
 ] as const;
 
 /**
- * Ordered by how easily a visitor can check them. The follower figures are live
- * and one click away, which is why they lead — impressions screenshots are not.
+ * No live follower counts here, deliberately.
+ *
+ * Her own follower total moves every week (15.2K → 16.5K inside a month), and
+ * there is no public LinkedIn API that would let the page read it automatically —
+ * follower counts are only exposed through an authenticated Marketing API for
+ * pages you administer, not for personal profiles. A number that has to be
+ * hand-edited to stay true is a number that will quietly go stale, so the page
+ * states growth as a fixed achievement instead.
+ *
+ * `detail` is optional; a card renders fine without one.
  */
-export const results = [
+export const results: {
+  display: string;
+  label: string;
+  detail?: string;
+}[] = [
   {
-    display: "15.2K",
-    label: "Followers on my own account",
-    detail: "Built from zero in under a year, and 338 posts deep. Go and check it.",
-  },
-  {
-    display: "3 → 693",
+    display: "3 → 600+",
     label: "Acheva Technologies",
-    detail: "From 3 followers to 600+ in two months. It has not stopped climbing since.",
+    detail: "From 3 followers to 600+ in two months, and still climbing.",
   },
   {
     display: "300+",
@@ -91,7 +132,7 @@ export const results = [
     label: "Impressions in 90 days",
     detail: "Across managed accounts, up 4,472% on the prior window. No paid spend.",
   },
-] as const;
+];
 
 export const services = [
   {
@@ -104,8 +145,15 @@ export const services = [
   {
     title: "Professional ghostwriting",
     summary:
-      "Your ideas, in your voice, written so people finish the post. No recycled hooks, no AI sludge, no “keep showing up”.",
+      "Your ideas and content written in your voice — your audience would swear you wrote it yourself.",
     points: ["Voice capture session", "4–12 posts per month", "Hook & narrative testing"],
+    featured: false,
+  },
+  {
+    title: "Social media management",
+    summary:
+      "LinkedIn, X, Instagram and TikTok — one brand, one voice, run properly on every platform your buyers actually use.",
+    points: ["Multi-platform content", "Community management", "Campaign support"],
     featured: false,
   },
   {
@@ -129,13 +177,6 @@ export const services = [
     points: ["ICP list build", "DM sequences", "Conversion tracking"],
     featured: false,
   },
-  {
-    title: "Mentorship & coaching",
-    summary:
-      "For founders who want to run it themselves. I hand you the system and correct your reps until it sticks.",
-    points: ["1:1 power sessions", "Content reviews", "90-day roadmap"],
-    featured: false,
-  },
 ] as const;
 
 export const process = [
@@ -147,12 +188,12 @@ export const process = [
   {
     step: "02",
     title: "Position",
-    body: "We settle who you're for and the problem you solve. Clients DM when they see you naming a pain they already feel.",
+    body: "We settle who you're for and the problem you solve. Clients reach out when they see you naming a pain they already feel.",
   },
   {
     step: "03",
     title: "Build trust",
-    body: "Lessons, wins, client stories — proof, not platitudes. Nobody DMs after one post. They DM after the third visit to your profile.",
+    body: "Lessons, wins, client stories — proof, not platitudes. Nobody buys after one post. They buy after the third visit to your profile.",
   },
   {
     step: "04",
@@ -218,14 +259,14 @@ export const experience = [
     org: "Sova Academy",
     period: "Apr 2026 — Present",
     kind: "My own venture",
-    note: "Tech education platform for beginners and professionals. Launch post drew 806 reactions and 738 comments.",
+    note: "Tech education platform for beginners and professionals.",
   },
   {
     role: "Social Media Strategist",
     org: "Acheva Technologies LTD",
     period: "Feb 2025 — Present",
     kind: "Part-time",
-    note: "Academic result-processing platform for African universities. Took the LinkedIn page from 3 followers to 693.",
+    note: "Academic result-processing platform for African universities.",
   },
   {
     role: "Brand Manager",
@@ -267,19 +308,6 @@ export const skills = [
   "Public Speaking",
 ] as const;
 
-export const speaking = {
-  eyebrow: "Speaking",
-  title: "The Future of Tech Careers: Are There Really Enough Jobs for Everyone?",
-  host: "In partnership with Utiva",
-  date: "15 August 2026 · 7:00 PM WAT",
-  body: "My first LinkedIn Live — a masterclass with a cloud engineer, a data scientist, a senior cybersecurity analyst, and a product manager on where tech hiring actually stands.",
-  stats: [
-    { label: "Reactions", value: "243" },
-    { label: "Comments", value: "301" },
-    { label: "Reposts", value: "39" },
-  ],
-} as const;
-
 export const faq = [
   {
     q: "How long before I see results?",
@@ -288,6 +316,10 @@ export const faq = [
   {
     q: "I post consistently and still get no clients. Why?",
     a: "Because high engagement is not the same as inbound leads. Likes come from peers; leads come from clarity. If your posts do not name who you help and the exact problem you solve, buyers scroll past — however good the writing is.",
+  },
+  {
+    q: "Do you only work on LinkedIn?",
+    a: "No. I work across LinkedIn, X, Instagram and TikTok — the marketing strategy and the day-to-day management together. LinkedIn is where I do my sharpest work and where most clients start, but the system travels. One brand, one voice, wherever your buyers are.",
   },
   {
     q: "Do you write in my voice, or yours?",
@@ -309,6 +341,6 @@ export const faq = [
 
 export const finalCta = {
   title: "Your competitors aren't better. They're just easier to find.",
-  body: "One call. We look at your profile together, and you leave knowing exactly what to fix first — whether or not you work with me.",
+  body: "One call. We look at your brand together, and you leave knowing exactly what to fix first — whether or not you work with me.",
   cta: "Book a 1:1 call",
 } as const;
