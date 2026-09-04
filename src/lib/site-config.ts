@@ -92,7 +92,7 @@ export const platforms = [
 export const clients = [
   "Acheva Technologies",
   "Sova Academy",
-  "Utiva",
+  "I'LLTIP",
   "Coachli",
   "HerTechTrail",
   "Uvidense",
