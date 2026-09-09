@@ -136,6 +136,16 @@ src/
 brand.md                palette, type, voice, motion rules
 ```
 
+## Responsive
+
+Audited at 13 real widths — 320, 360, 375, 390, 414, 480, 640, 768, 834, 1024, 1280, 1440 and
+1920px. At every one: no horizontal overflow, no element escaping the viewport, no console
+errors, a working nav affordance, all body text ≥ 11px, and all touch targets ≥ 40px.
+
+Two issues that audit caught and fixed: the "Most requested" / "Most popular" badges were 10px
+(now 11px), and the desktop nav links were 36px tall — under the touch minimum, which matters
+on touch laptops and iPads at ≥1024px (now 40px).
+
 ## Design decisions
 
 - **White + magenta, one committed theme.** No dark mode. Magenta panels punctuate the white

@@ -79,6 +79,14 @@ flagship offer, never the whole identity — do not write copy that reduces her 
 - Active voice, sentence case headings, Title Case only in nav and buttons. Every claim
   carries a number, and preferably one the reader can go and check.
 
+## The portrait
+
+Her photo is never rotated, skewed, or tilted. The magenta plate behind it is offset
+**straight** down-and-right, because a tilted plate sitting directly behind a straight photo
+makes the eye read the whole stack as skewed — which is exactly the complaint it caused the
+first time. The offset uses `inset` values rather than a translate utility, since Motion
+writes `transform` inline for the parallax and would overwrite one.
+
 ## Motion
 
 The page should be enjoyable to scroll without becoming a fairground. What it does, and why:
@@ -86,7 +94,7 @@ The page should be enjoyable to scroll without becoming a fairground. What it do
 | Effect | Where | Rule it follows |
 |---|---|---|
 | Scroll-progress line | Fixed at the top | Spring-damped, 3px, brand gradient |
-| Parallax | Hero portrait (−70px), proof chip (−16px), ambient blooms (+90px) | Three different rates in one scene reads as depth; a single rate reads as a glitch |
+| Parallax | Hero photo (−110px), magenta plate (+80px), proof chip (−30px), copy (−45px), page-wide backdrop (−700…+420px) | Different rates in one scene read as depth; a single rate reads as a glitch. **Translate only — never rotate or skew the portrait.** |
 | Ambient blooms | Hero background | 9s and 13s float loops, blurred, `-z-10`, `aria-hidden` |
 | Marker wipe | Hero headline gold swash | 620ms `ease-out` after a 260ms beat, once on load |
 | Count-up | Every headline figure | Fires once on entry, eases out, lands on the exact target |

@@ -135,21 +135,26 @@ export function Hero() {
                 })}
             className="relative mx-auto w-full max-w-sm lg:max-w-none"
           >
-            {/* Magenta plate, tilted and offset behind the photo. It carries the
-                brand colour the studio backdrop cannot, and gives the parallax a
-                second layer to separate from. */}
+            {/*
+              Magenta plate behind the photo. Offset straight down-and-right —
+              never rotated. A tilted plate sitting directly behind a straight
+              photo makes the eye read the whole stack as skewed, which is the
+              one thing the portrait must not do. Offset via inset rather than a
+              transform, because Motion writes `transform` inline for the
+              parallax and would overwrite a translate utility.
+            */}
             <motion.div
               aria-hidden="true"
               data-parallax=""
               style={reduceMotion ? undefined : { y: plateY }}
-              className="panel-brand absolute inset-0 -rotate-3 rounded-[2rem] shadow-xl shadow-[#d9127f]/25"
+              className="panel-brand absolute top-4 -right-4 -bottom-4 left-4 rounded-[2rem] shadow-xl shadow-[#d9127f]/25 sm:top-5 sm:-right-5 sm:-bottom-5 sm:left-5"
             />
-            {/* Gold accent peeking from behind the opposite corner. */}
+            {/* Gold accent peeking straight out from the top edge. */}
             <motion.div
               aria-hidden="true"
               data-parallax=""
               style={reduceMotion ? undefined : { y: plateY }}
-              className="bg-gold absolute -top-4 right-6 size-24 rotate-12 rounded-2xl"
+              className="bg-gold absolute -top-5 right-10 size-20 rounded-2xl"
             />
 
             <motion.div

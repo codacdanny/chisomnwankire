@@ -63,7 +63,7 @@ export function SiteNav() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:ring-ring rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none"
+                className="text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:ring-ring flex min-h-10 items-center rounded-md px-3 text-sm font-medium transition-colors duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none"
               >
                 {item.label}
               </a>

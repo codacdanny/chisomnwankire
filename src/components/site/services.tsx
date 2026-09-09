@@ -27,7 +27,7 @@ export function Services() {
               )}
             >
               {service.featured ? (
-                <p className="bg-gold mb-4 inline-block rounded-full px-2.5 py-1 font-mono text-[0.625rem] tracking-[0.14em] text-[#1a1016] uppercase">
+                <p className="bg-gold mb-4 inline-block rounded-full px-2.5 py-1 font-mono text-[0.6875rem] tracking-[0.14em] text-[#1a1016] uppercase">
                   Most requested
                 </p>
               ) : null}
