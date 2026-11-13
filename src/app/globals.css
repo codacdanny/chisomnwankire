@@ -243,6 +243,46 @@
 }
 
 /*
+ * The naira sign, built from Outfit's own "N".
+ *
+ * None of the site's faces (Outfit, Geist, Geist Mono) ships U+20A6, so a literal
+ * "₦" drops to a system font at the wrong weight — glaring at display size beside
+ * Outfit figures. This draws the two bars over a real Outfit "N" instead, so the
+ * weight and shape always match the price it sits in.
+ *
+ * Bar positions come from Outfit's metrics (per 1000 upm: ascent 1000, descent
+ * 260, cap height 676). Pinning the box to line-height 1 puts the baseline 0.13em
+ * above its bottom edge, so cap-centre sits at 0.468em; the two bars straddle it.
+ *
+ * The real "₦" still goes to screen readers and the clipboard — use <Naira> in
+ * rates.tsx rather than this class on its own.
+ */
+@utility naira {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  line-height: 1;
+  user-select: none;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: -0.02em;
+    height: 0.07em;
+    background: currentColor;
+  }
+
+  &::before {
+    bottom: 0.518em;
+  }
+
+  &::after {
+    bottom: 0.348em;
+  }
+}
+
+/*
  * Highlighter swash — gold sits behind ink text rather than replacing it,
  * because gold text on white is 1.3:1. Ink on gold is 12.9:1.
  */

@@ -22,7 +22,7 @@ npm run lint
 | **Coachli link** | ⚠ `coachli.co/chisomnwankire` returned HTTP 500 on check — a server error, not a 404, so it is neither confirmed nor disproven. Have her click it. It backs the "1:1 Power Session" CTA. |
 | **Sova job title** | ⚠ Listed as "Founder & Team Lead". Her LinkedIn says "Team Lead", but her own launch post says *"I'm officially launching my brand today"* — see below. |
 | **Testimonials** | ⚠ None exist publicly. The Reviews section and its nav entry are built and gated on `testimonials` in site-config; add three and both appear. |
-| **Pricing** | ⚠ The cost FAQ is written in her voice but contains no real numbers. |
+| **Pricing** | ✔ Sponsored-content rates and bundles are live in the Rates section, straight from her rate card. ⚠ Her card's Post + Video line ends "…20k+ audience of 8K+"; the "of 8K+" was left out until she says what it means. ⚠ Management and mentorship still have no published numbers. |
 
 **Supplied and wired:** Calendly, email, LinkedIn `linkedin.com/in/chisom-nwankire`,
 X `x.com/chisom_nwankire`.

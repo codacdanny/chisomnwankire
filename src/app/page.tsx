@@ -9,6 +9,7 @@ import { Process } from "@/components/site/process";
 import { About } from "@/components/site/about";
 import { Testimonials } from "@/components/site/testimonials";
 import { Offers } from "@/components/site/offers";
+import { Rates } from "@/components/site/rates";
 import { Faq } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
 import { SiteFooter } from "@/components/site/footer";
@@ -36,6 +37,7 @@ export default function Home() {
         <Testimonials />
         <Process />
         <Offers />
+        <Rates />
         <About />
         <Faq />
         <FinalCta />

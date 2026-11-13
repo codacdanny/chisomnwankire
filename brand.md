@@ -58,6 +58,11 @@ Any translucent fill layered on a panel must darken it (`bg-black/10`), never li
 | **Geist** | `--font-sans` | All body copy, labels, buttons |
 | **Geist Mono** | `--font-mono` | Metrics, dates, eyebrows, anything with digits (`tabular-nums`) |
 
+**The naira sign is drawn, not typed.** None of the three faces ships `₦` (U+20A6), so a
+literal one falls back to a system font at the wrong weight. Prices use `<Naira>` in
+`rates.tsx`, which puts two bars over Outfit's own "N" (the `naira` utility in `globals.css`)
+and hands the real `₦` to screen readers. Use it for every naira figure on the page.
+
 The hero headline is set in **all-caps**, where `display-tight`'s -0.03em is too tight for
 capitals — it relaxes to -0.005em. Elsewhere display type is tight (`tracking-[-0.03em]`) and heavy (600–700). Body stays 400–500 at normal
 tracking. Fluid sizing for display only; body sizes are fixed.

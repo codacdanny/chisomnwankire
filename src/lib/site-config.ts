@@ -56,6 +56,7 @@ export const nav = [
   { label: "Results", href: "#results" },
   { label: "Platforms", href: "#platforms" },
   { label: "Process", href: "#process" },
+  { label: "Rates", href: "#rates" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -249,6 +250,71 @@ export const offers = [
 ] as const;
 
 /**
+ * Sponsored content on HER LinkedIn — brands paying to reach her audience.
+ *
+ * A different buyer from `offers` above (founders hiring her to run THEIR brand),
+ * which is why it gets its own section rather than more cards in that one.
+ *
+ * ✔ Every price, deliverable and the 20K+ audience figure is from her own rate
+ *   card creative (Nov 2026). Prices are whole naira.
+ * ⚠ Her card's Post + Video line reads "Access to 20k+ audience of 8K+". The
+ *   "of 8K+" reads like a typo and is left out until she says what it means.
+ *
+ * Bundles reference the single rates directly, so the "Save ₦…" line on each
+ * bundle is computed, never typed — change a price here and it stays true.
+ */
+const sponsoredPost = {
+  name: "Sponsored Post",
+  price: 100_000,
+  includes: [
+    "Content creation",
+    "Written in my personal brand voice",
+    "Published on my LinkedIn",
+    "Access to my 20K+ audience",
+  ],
+} as const;
+
+const postAndVideo = {
+  name: "LinkedIn Post + Video",
+  price: 200_000,
+  includes: [
+    "Written LinkedIn post",
+    "Original video content",
+    "Published on my LinkedIn",
+    "Access to my 20K+ audience",
+  ],
+} as const;
+
+export const rates = {
+  audience: "20K+",
+  singles: [sponsoredPost, postAndVideo],
+  bundles: [
+    {
+      name: "Growth Package",
+      price: 350_000,
+      items: [
+        { qty: 2, rate: sponsoredPost, label: "Sponsored Posts" },
+        { qty: 1, rate: postAndVideo, label: "LinkedIn Post + Video" },
+      ],
+      extras: [],
+      featured: false,
+    },
+    {
+      name: "Brand Boost Package",
+      price: 500_000,
+      items: [
+        { qty: 3, rate: sponsoredPost, label: "Sponsored Posts" },
+        { qty: 2, rate: postAndVideo, label: "LinkedIn Posts + Videos" },
+      ],
+      extras: ["Access to 20K+ audience across posts"],
+      featured: true,
+    },
+  ],
+  note: "Rates for sponsored content may vary depending on campaign requirements, deliverables, usage rights and exclusivity.",
+  closing: "Let's amplify your brand on LinkedIn.",
+} as const;
+
+/**
  * ⚠ Sova: her own launch post frames this as her venture, not a job — "I'm
  * officially launching my brand today". Titled below as Founder & Team Lead;
  * confirm which she prefers.
@@ -334,8 +400,10 @@ export const faq = [
     a: "Both. Founder-led profiles almost always outperform company pages, so if you're a brand I'll usually recommend putting weight behind the person leading it — and I manage both together. That is exactly what I did at Acheva.",
   },
   {
-    q: "What does it cost?", // ⚠ replace with real pricing
-    a: "Power sessions are booked individually. Management and mentorship are quoted after the call, based on posting volume and how much outreach you want running. I'll give you a number on the call, not a proposal three days later.",
+    // ⚠ Sponsored-content rates are real (see `rates`). Management and
+    // mentorship still have no published numbers.
+    q: "What does it cost?",
+    a: "Sponsored posts on my LinkedIn have fixed rates, listed in the Rates section above. Power sessions are booked individually. Management and mentorship are quoted after the call, based on posting volume and how much outreach you want running. I'll give you a number on the call, not a proposal three days later.",
   },
 ] as const;
 
